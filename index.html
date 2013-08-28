@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <title>Recorder</title>
+
+    <script src="script/lib/jquery-1.8.2.min.js"></script>
+    <script src="script/setup.js"></script>
+    <script src="script/audioOperations.js"></script>
+    <script src="script/lib/recorderjs/recorder.js"></script>
+
+    <style>
+
+    .controls{
+        position: relative;
+        height: 80px;
+        width: 80px;
+        background: transparent;
+        border:none;
+        clear:both;
+    }
+
+    .imgcontrols{
+        position: relative;
+        height: 80px;
+        width: 80px;
+    }
+
+    .controls:hover{
+        cursor: pointer;
+    }
+
+    #recordControl{
+        position: relative;
+        left: 80px;
+        width: 80px;
+        height: 80px;
+        top: -80px;
+    }
+
+    #waveformCanvas{
+      background-color: lightblue;
+      width: 0px;
+      height: 300px
+    }
+
+    #wavContainer{
+      overflow-x: scroll; 
+      width: 100%;
+      border: solid;
+    }
+
+    #controls{
+      width: 100%;
+      border: solid;
+      height: 100px;
+    }
+
+    </style>
+
+  </head>
+
+  <body>
+    <div id="shown">
+      Awaiting permission...
+    </div>
+    <div id="hidden" style="display:none">
+
+      <div id="controls">
+        <div id="playpauseControl">
+            <button name="playpause" class="controls" onclick="playAudio();" disabled = "true">
+                <img name="playpause" src="res/img/playButton.png"  class="imgcontrols"/>
+            </button>
+        </div>
+        <div id="recordControl">
+            <button name="record" id="recordButton" class="controls" onclick="recordAudio();" disabled="flase">
+                <img name="record" src="res/img/loading.gif"  class="imgcontrols"/>
+            </button>
+        </div>
+
+      </div>
+
+      <div id="wavContainer">
+        <!-- Wav form will be drawn here -->
+        <canvas id="waveformCanvas" >
+        </camvas>
+      </div>
+
+    </div>
+  </body>
+</html>
