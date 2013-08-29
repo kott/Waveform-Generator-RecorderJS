@@ -12,7 +12,7 @@ $dirname = '../res/uploads/'; //the directory we want to write our clips in
 
 //check if the directory has already been created
 if(!is_dir($dirname)){
-    mkdir ($dirname, 0756);
+    mkdir ($dirname, 0757);
 }
 
 
