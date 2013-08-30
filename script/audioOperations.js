@@ -8,6 +8,7 @@ var audioSamples = new Array();
 var timeOut = 100; //0.1 seconds
 var duration = 0;
 var timer;
+var audioFilename = null;
 
 
 /**
@@ -16,6 +17,8 @@ var timer;
 */
 function recordAudio(){
     var recordIMG = null;
+    audioFilename = null;
+    $('#playpause').prop('disabled', true);
 
     if( !isRecording ){
         clipID = createID();
@@ -35,6 +38,7 @@ function recordAudio(){
        recordIMG.src = "res/img/loading.gif";
        isRecording = false;
     }
+    $('#playpause').prop('disabled', false);
 }
 
 
@@ -75,8 +79,8 @@ function drawLine(x1,x2,y1,y2){
 
 
 /**
-* Not currently used since it cause "clipping"
-* of the waveform
+*   Not currently used since it cause "clipping"
+*   of the waveform
 */
 function normalizeData(){
   var oldMax = Math.max.apply(null, audioSamples);
@@ -91,13 +95,36 @@ function normalizeData(){
 
 }
 
-///
-//Creates a unique id that is assigned to the description
-//used as a link between the visual description space and 
-//the text area for the description 
-///
+/**
+*   Creates a unique id that is assigned to the description
+*   used as a link between the visual description space and 
+*   the text area for the description 
+*/
 function createID() {
   return ("" + 1e10).replace(/[018]/g, function(a) {
     return (a ^ Math.random() * 16 >> a / 4).toString(16)
   });
+}
+
+
+/**
+*   Here the audio is created with an associated source.
+*   The audio is then played, and once it is finished the
+*   record button is enabled again 
+*/
+function playAudio(){
+  if(audioFilename === null || isRecording){ return; }
+
+  $('#recordButton').prop('disabled', true);
+  var audio = new Audio();
+  audio.src = "./res/uploads/" + audioFilename;
+  audio.play();
+  console.log("Playing: " + audioFilename);
+  audio.addEventListener("loadeddata", function(){
+    setTimeout(function(){
+      $('#recordButton').prop('disabled', false);   
+    },audio.duration * 1000);
+  });
+  
+
 }

@@ -40,7 +40,7 @@ class AudioReader{
 		$this->sampleRate = $this->audioData['SampleRate'];
 		$this->duration = ($this->audioData['ChunkSize'] * 8 ) / ( $this->audioData['SampleRate'] * $this->audioData['BitsPerSample']  * $this->audioData['NumChannels']);
 
-
+		$this->audioData['audioFilename'] = basename($this->fileName);
         $this->getSamples();
       	$this->audioData['sampleValues'] = $this->sampleData;
       	

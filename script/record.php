@@ -8,7 +8,7 @@ require("AudioReader.php");
 $temp_name = isset($_FILES['data']['tmp_name']) ? $_FILES['data']['tmp_name'] : null;
 $clip_id = isset($_POST['id']) ? $_POST['id'] : null;
 $request = isset($_POST['request'])? $_POST['request'] : null;
-$dirname = '../res/uploads/'; //the directory we want to write our clips in
+$dirname = '../res/uploads'; //the directory we want to write our clips in
 
 //check if the directory has already been created
 if(!is_dir($dirname)){

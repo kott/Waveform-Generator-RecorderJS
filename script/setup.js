@@ -14,16 +14,6 @@ $(document).ready(function(){
   ctx = canvas.getContext('2d');
 });
 
-///
-///when the browser window is resized, the 
-///canvas width is adjusted accordingly
-///
-$(window).resize(function() {
-  //console.log("Window Resized");
-  //$('#wavContainer').style.width = $(window).width();
-});
-
-
 function jsRecorderInit(){
   try {
       // webkit shim
@@ -107,10 +97,11 @@ function uploadToServer(blob, clipID , recordedDuration){
         for(var i in json.sampleValues){
           audioSamples.push(json.sampleValues[i]);
         }
-        
+
+        audioFilename = json.audioFilename;
         createWaveform(recordedDuration);
         recordIMG.src = "res/img/recordButton.png";
-        console.log("vals " + json.sampleValues.length);
+        console.log("Filename: " + json.audioFilename);
         
       },
       error: function(json){
